@@ -6,26 +6,24 @@
  * To change this template use File | Settings | File Templates.
  */
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class Task {
-    private List<Task> dependents;
-    private List<Task> dependencies;
+    private Collection<Task> dependents;
+    private Collection<Task> dependencies;
     private String name;
 
     public Task( String name ){
        this.name = name;
     }
 
-    public List<Task> getDependents(){
-       return (List<Task>)
-               ((ArrayList<Task>) this.dependents).clone();
+    public Collection<Task> getDependents(){
+       return new ArrayList<Task>(this.dependents);
     }
 
-    public List<Task> getDependencies(){
-        return (List<Task>)
-               ((ArrayList<Task>) this.dependencies).clone();
+    public Collection<Task> getDependencies(){
+       return new ArrayList<Task>(this.dependencies);
     }
 
     public String getName(){
@@ -36,9 +34,21 @@ public class Task {
         this.dependents.remove(dependent);
     }
 
+    public void addDependents( Collection<Task> dependents ){
+        this.dependents.addAll( dependents );
+
+        for( Task dependent : dependents ){
+            dependent.addDependency( this );
+        }
+    }
+
+    public void addDependency( Task dependency ){
+        this.dependencies.add(dependency);
+    }
+
     @Override
     public String toString(){
-
+        return this.name;
     }
 
     @Override

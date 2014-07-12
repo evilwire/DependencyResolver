@@ -1,3 +1,7 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Hashtable;
+
 /**
  * Created by IntelliJ IDEA.
  * User: grimslock
@@ -7,6 +11,6 @@
  */
 public class Main {
     public static void main(String[] args){
-        System.out.println("why did i get the silliest one?");
+
     }
 }

@@ -9,7 +9,7 @@
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class Task {
+public class Task implements Comparable<Task> {
     private Collection<Task> dependents;
     private Collection<Task> dependencies;
     private String name;
@@ -44,6 +44,10 @@ public class Task {
 
     public void addDependency( Task dependency ){
         this.dependencies.add(dependency);
+    }
+
+    public int compareTo(Task task){
+        return this.getDependencies().size() - task.getDependencies().size();
     }
 
     @Override
